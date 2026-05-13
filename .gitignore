@@ -2,6 +2,10 @@
 # Compiled Python files
 *.pyc
 __pycache__/
+*.pyo
+*.pyd
+output
+
 
 # Dependencies
 .venv/
@@ -25,3 +29,8 @@ venv/
 .DS_Store
 Thumbs.db
 ```
+# Testing
+.pytest_cache/
+.mypy_cache/
+```
+.DS_Store

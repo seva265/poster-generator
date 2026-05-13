@@ -48,6 +48,17 @@ def _find_font_file(font_filename: str) -> Optional[Path]:
     """Search for a font file in standard locations."""
     target = font_filename.lower()
 
+    # First, check local fonts directory explicitly
+    local_font_path = LOCAL_FONTS_DIR / font_filename
+    if local_font_path.exists() and local_font_path.is_file():
+        return local_font_path
+    
+    # Also check case-insensitive in local directory
+    if LOCAL_FONTS_DIR.exists():
+        for font_path in LOCAL_FONTS_DIR.iterdir():
+            if font_path.is_file() and font_path.name.lower() == target:
+                return font_path
+
     for search_path in FONT_SEARCH_PATHS:
         if not search_path.exists():
             continue

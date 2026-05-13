@@ -13,7 +13,6 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 from config import Config
-from excel_reader import ProjectData
 from text_utils import fit_text_to_box, format_output_filename
 
 logger = logging.getLogger(__name__)

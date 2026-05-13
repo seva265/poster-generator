@@ -11,9 +11,50 @@
 
 ## Установка
 
+### Вариант 1: Использование Poetry (Рекомендуется)
+
+Если у вас установлен Poetry, это рекомендуемый способ установки:
+
 ```bash
 # Установка зависимостей через Poetry
 poetry install
+
+# Запуск приложения
+poetry run streamlit run app.py
+```
+
+### Вариант 2: Использование venv и pip
+
+Если у вас не установлен Poetry или вы предпочитаете использовать pip:
+
+#### На Linux/macOS:
+```bash
+# Создание виртуального окружения
+python3 -m venv venv
+
+# Активация виртуального окружения
+source venv/bin/activate
+
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Запуск приложения
+streamlit run app.py
+```
+
+#### На Windows:
+```bash
+# Создание виртуального окружения
+python -m venv venv
+
+# Активация виртуального окружения
+venv\Scripts\activate
+
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Запуск приложения
+streamlit run app.py
 ```
 
 ## Быстрый старт

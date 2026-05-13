@@ -8,8 +8,8 @@ from typing import Optional
 import streamlit as st
 from PIL import Image
 
-from src.pd_generator.config import Config
-from src.pd_generator.poster import PosterGenerator
+from src.config import Config
+from src.poster import PosterGenerator
 
 
 @dataclass

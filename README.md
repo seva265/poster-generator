@@ -14,16 +14,13 @@
 ```bash
 # Установка зависимостей через Poetry
 poetry install
-
-# Или через pip
-pip install -r requirements.txt
 ```
 
 ## Быстрый старт
 
 1. **Запустите приложение**:
    ```bash
-   streamlit run app.py
+   poetry run streamlit run app.py
    ```
 
 2. **Заполните форму** в браузере:

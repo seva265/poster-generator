@@ -65,26 +65,8 @@ logos:
 - `logo2.png` — верхний логотип (опционально)
 - или один `logo.png`
 
-## Структура проекта
-
-```
-pd-generator/
-├── src/pd_generator/
-│   ├── __init__.py
-│   ├── config.py      # Конфигурация
-│   ├── poster.py      # Генерация PDF
-│   └── text_utils.py  # Утилиты текста
-├── images/            # Изображения и логотипы
-├── app.py             # Streamlit приложение
-├── config.yaml        # Конфигурация
-└── pyproject.toml     # Зависимости Poetry
-```
-
 ## Требования
 
 - Python 3.10+
 - Шрифты с поддержкой кириллицы (DejaVu, Arial, Calibri)
 
-## Лицензия
-
-MIT

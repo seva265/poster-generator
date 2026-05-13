@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+output
 
 # Dependencies
 venv/
@@ -36,3 +37,4 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 ```
+.DS_Store

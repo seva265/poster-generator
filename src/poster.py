@@ -52,10 +52,12 @@ def _find_font_file(font_filename: str) -> Optional[Path]:
         if not search_path.exists():
             continue
 
+        # First try exact match
         for font_path in search_path.rglob(font_filename):
             if font_path.is_file():
                 return font_path
 
+        # Then try case-insensitive match
         for font_path in search_path.rglob("*.ttf"):
             if font_path.is_file() and font_path.name.lower() == target:
                 return font_path

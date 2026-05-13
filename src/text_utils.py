@@ -1,9 +1,8 @@
 """Text utilities for wrapping and sizing in PD Generator."""
 
 import logging
-from typing import List, Optional, Tuple
+from typing import List, Tuple
 
-from reportlab.lib.units import mm
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 logger = logging.getLogger(__name__)
@@ -15,18 +14,7 @@ def wrap_text(
     font_name: str,
     font_size: float,
 ) -> List[str]:
-    """
-    Wrap text to fit within a maximum width.
-
-    Args:
-        text: Text to wrap
-        max_width: Maximum width in points
-        font_name: Font name for measuring
-        font_size: Font size in points
-
-    Returns:
-        List of wrapped lines
-    """
+    """Wrap text to fit within a maximum width."""
     if not text:
         return []
 
@@ -52,9 +40,7 @@ def wrap_text(
         else:
             if current_line:
                 lines.append(current_line)
-            # Check if word itself is too long
             if stringWidth(word, font_name, font_size) > max_width:
-                # Break the word
                 lines.extend(_break_long_word(word, max_width, font_name, font_size))
                 current_line = ""
             else:
@@ -96,17 +82,7 @@ def calculate_text_height(
     font_size: float,
     line_spacing: float = 1.2,
 ) -> float:
-    """
-    Calculate total height of wrapped text.
-
-    Args:
-        lines: List of text lines
-        font_size: Font size in points
-        line_spacing: Line spacing multiplier
-
-    Returns:
-        Total height in points
-    """
+    """Calculate total height of wrapped text."""
     if not lines:
         return 0
 
@@ -123,21 +99,7 @@ def fit_text_to_box(
     min_font_size: float,
     line_spacing: float = 1.2,
 ) -> Tuple[List[str], float, bool]:
-    """
-    Fit text into a box, reducing font size if needed.
-
-    Args:
-        text: Text to fit
-        max_width: Maximum width in points
-        max_height: Maximum height in points
-        font_name: Font name
-        initial_font_size: Starting font size in points
-        min_font_size: Minimum font size before truncation
-        line_spacing: Line spacing multiplier
-
-    Returns:
-        Tuple of (lines, final_font_size, was_truncated)
-    """
+    """Fit text into a box, reducing font size if needed."""
     if not text:
         return [], initial_font_size, False
 
@@ -151,10 +113,8 @@ def fit_text_to_box(
         if height <= max_height:
             return lines, font_size, False
 
-        # Reduce font size and try again
         font_size -= 1
 
-    # Font size at minimum but still doesn't fit - truncate
     font_size = min_font_size
     lines = wrap_text(text, max_width, font_name, font_size)
     line_height = font_size * line_spacing
@@ -162,11 +122,9 @@ def fit_text_to_box(
 
     if len(lines) > max_lines:
         lines = lines[:max_lines]
-        # Add ellipsis to last line
         if lines:
             last_line = lines[-1]
             ellipsis = "…"
-            # Shorten last line to fit ellipsis
             while last_line and stringWidth(last_line + ellipsis, font_name, font_size) > max_width:
                 last_line = last_line[:-1]
             lines[-1] = last_line + ellipsis
@@ -176,33 +134,20 @@ def fit_text_to_box(
 
 
 def sanitize_filename(name: str, max_length: int = 200) -> str:
-    """
-    Create a safe filename from a string.
-
-    Args:
-        name: Original name
-        max_length: Maximum filename length
-
-    Returns:
-        Safe filename string
-    """
-    # Replace problematic characters
+    """Create a safe filename from a string."""
     unsafe_chars = '<>:"/\\|?*\x00'
     result = name
 
     for char in unsafe_chars:
         result = result.replace(char, "_")
 
-    # Replace multiple spaces/underscores with single underscore
     while "  " in result:
         result = result.replace("  ", " ")
     while "__" in result:
         result = result.replace("__", "_")
 
-    # Strip leading/trailing spaces and dots
     result = result.strip(" .")
 
-    # Truncate if too long (leave room for extension)
     if len(result) > max_length:
         result = result[:max_length]
 
@@ -214,17 +159,7 @@ def format_output_filename(
     project_id: str,
     project_name: str,
 ) -> str:
-    """
-    Format output filename from pattern.
-
-    Args:
-        pattern: Naming pattern with placeholders
-        project_id: Project ID
-        project_name: Project name
-
-    Returns:
-        Formatted filename (without extension)
-    """
+    """Format output filename from pattern."""
     result = pattern.replace("{project_id}", str(project_id))
     result = result.replace("{project_name}", project_name)
     return sanitize_filename(result)

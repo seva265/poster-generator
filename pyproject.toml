@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "pd-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = "University Project Poster Generator with Streamlit UI"
 authors = ["Developer"]
 readme = "README.md"
+packages = [{include = "pd_generator", from = "src"}]
 
 [tool.poetry.dependencies]
 python = ">=3.10"

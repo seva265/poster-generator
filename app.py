@@ -1,15 +1,15 @@
 """Streamlit frontend for PD Generator."""
 
 import tempfile
-from pathlib import Path
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Optional
 
 import streamlit as st
 from PIL import Image
 
-from config import Config
-from poster import PosterGenerator
+from src.pd_generator.config import Config
+from src.pd_generator.poster import PosterGenerator
 
 
 @dataclass
